@@ -61,7 +61,6 @@ class BaseExperiment(object):
                         'unique_id': self.unique_id}
       self.results.append(self.data_dict)
 
-
   def run_experiment(self):
     """Run the experiment for n_steps and collect data."""
     np.random.seed(self.seed)

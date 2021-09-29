@@ -26,12 +26,20 @@ FigureOptions = collections.namedtuple(
     'FigureOptions', ['fig_name', 'config','paper_n_jobs', 'plot_fun'])
 
 FIGURE_OPTIONS = collections.OrderedDict([
+    ['3.1manyArms', FigureOptions(fig_name='3.1manyArms',
+                          config='finite_arm.config_custom',
+                          paper_n_jobs=20000,
+                          plot_fun=bp.compare_action_selection_plot)],
     ['3.1', FigureOptions(fig_name='3.1',
                           config='finite_arm.config_simple',
                           paper_n_jobs=20000,
                           plot_fun=bp.compare_action_selection_plot)],
     ['3.2a', FigureOptions(fig_name='3.2a',
                            config='finite_arm.config_simple',
+                           paper_n_jobs=20000,
+                           plot_fun=bp.simple_algorithm_plot)],
+    ['3.2amanyArms', FigureOptions(fig_name='3.2amanyArms',
+                           config='finite_arm.config_custom',
                            paper_n_jobs=20000,
                            plot_fun=bp.simple_algorithm_plot)],
     ['3.2b', FigureOptions(fig_name='3.2b',

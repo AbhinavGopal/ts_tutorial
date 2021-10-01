@@ -13,6 +13,8 @@ from base.config_lib import Config
 from base.experiment import BaseExperiment
 from finite_arm.agent_finite import FiniteBernoulliBanditEpsilonGreedy
 from finite_arm.agent_finite import FiniteBernoulliBanditTS
+from finite_arm.agent_finite import FiniteBernoulliBanditIDS
+from finite_arm.agent_finite import FiniteBernoulliBanditUCB
 from finite_arm.env_finite import FiniteArmedBernoulliBandit
 
 import numpy as np
@@ -20,15 +22,18 @@ import numpy as np
 def get_config():
   """Generates the config for the experiment."""
   name = 'finite_custom'
-  n_arm = 3000
+  n_arm = 100
   agents = collections.OrderedDict(
       [('greedy',
-        functools.partial(FiniteBernoulliBanditEpsilonGreedy, n_arm, epsilon = 0.05)),
-       ('ts', functools.partial(FiniteBernoulliBanditTS, n_arm))]
+        functools.partial(FiniteBernoulliBanditEpsilonGreedy, n_arm, 0.01)),
+        ('ts', functools.partial(FiniteBernoulliBanditTS, n_arm)),
+        ('ucb',
+        functools.partial(FiniteBernoulliBanditUCB, n_arm))
+      ]
   )
 #   print(functools.partial(FiniteBernoulliBanditEpsilonGreedy, n_arm))
 #   exit()
-  probs = np.random.uniform(0,1,3000)
+  probs = np.random.uniform(0,1,n_arm)
 #   probs = [0.7, 0.8, 0.9]
   environments = collections.OrderedDict(
       [('env', functools.partial(FiniteArmedBernoulliBandit, probs))]
